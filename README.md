@@ -1,38 +1,162 @@
-# Google Forms Lite (monorepo)
+# 📄 Google Forms Lite (Monorepo)
 
-Simplified Google Forms clone: create forms, fill them, view responses.
+Легкий аналог Google Forms, побудований як **monorepo** з клієнтом (React) і сервером (GraphQL).
 
-## Requirements
+---
 
-- Node.js (recommended: 18+)
+# 🚀 Технології
 
-## Install
+## Client
 
-From the repo root:
+- React + TypeScript
+- Vite
+- Redux Toolkit (RTK Query)
+- React Router
+- GraphQL Code Generator
+
+## Server
+
+- Node.js + TypeScript
+- Apollo Server (GraphQL)
+- UUID
+
+---
+
+# 📁 Структура проєкту
+
+```
+google-forms-lite/
+│
+├── client/        # Frontend (React)
+├── server/        # Backend (GraphQL API)
+├── package.json   # Root (monorepo config)
+```
+
+---
+
+# ⚙️ Встановлення
+
+1. Клонувати репозиторій:
+
+```bash
+git clone <your-repo-url>
+cd google-forms-lite
+```
+
+2. Встановити всі залежності:
 
 ```bash
 npm install
 ```
 
-## Run (dev)
+---
 
-Runs GraphQL server and React client together:
+# ▶️ Запуск у режимі розробки
 
 ```bash
 npm run dev
 ```
 
-- **Server**: `http://localhost:4000/` (GraphQL endpoint)
-- **Client**: Vite will print the URL (usually `http://localhost:5173/`)
+👉 Запуститься:
 
-## Project structure
+- сервер (GraphQL API)
+- клієнт (React app)
 
-- `client`: React + TypeScript + Redux Toolkit (RTK Query) + React Router
-- `server`: Node.js + Apollo GraphQL server (in-memory store)
+Використовується пакет `concurrently` для паралельного запуску.
 
-## Notes
+---
 
-- Data is stored **in memory** (will reset after server restart).
-- Optional env var for client:
-  - `client/.env`: `VITE_GRAPHQL_URL=http://localhost:4000/`
+# 🌐 Доступ до додатку
 
+- Client: http://localhost:5173
+- Server (GraphQL): http://localhost:4000
+
+---
+
+# 🔧 Окремий запуск
+
+## Сервер
+
+```bash
+npm run dev -w server
+```
+
+## Клієнт
+
+```bash
+npm run dev -w client
+```
+
+---
+
+# 🏗️ Збірка проєкту
+
+```bash
+npm run build
+```
+
+👉 Виконає:
+
+- build серверу
+- build клієнту
+
+---
+
+# ▶️ Запуск продакшн серверу
+
+```bash
+npm run start -w server
+```
+
+---
+
+# 📡 GraphQL API
+
+Сервер підтримує:
+
+## Queries
+
+- `forms` — список форм
+- `form(id)` — одна форма
+- `responses(formId)` — відповіді
+
+## Mutations
+
+- `createForm` — створити форму
+- `submitResponse` — відправити відповіді
+
+---
+
+# 🧠 Codegen (опціонально)
+
+Для генерації типів GraphQL:
+
+```bash
+npm run codegen -w client
+```
+
+---
+
+# 📦 Основні команди
+
+| Команда                     | Опис                    |
+| --------------------------- | ----------------------- |
+| `npm install`               | Встановити залежності   |
+| `npm run dev`               | Запустити весь проєкт   |
+| `npm run build`             | Збірка                  |
+| `npm run lint`              | Лінтинг client          |
+| `npm run codegen -w client` | Генерація GraphQL типів |
+
+---
+
+# ⚠️ Змінні середовища
+
+У client можна створити `.env`:
+
+```
+VITE_GRAPHQL_URL=http://localhost:4000/
+```
+
+# 👨‍💻 Автор
+
+Олександр Пономаренко

@@ -1,23 +1,28 @@
-import type { DraftQuestion } from '../../utils/formBuilder'
-import { isChoiceType } from '../../utils/formBuilder'
-import type { QuestionType } from '../../types/types'
-import './QuestionBuilder.css'
+import type { DraftQuestion } from "../../utils/formBuilder";
+import { isChoiceType } from "../../utils/formBuilder";
+import type { QuestionType } from "../../types/types";
+import "./QuestionBuilder.css";
 
 type Props = {
-  question: DraftQuestion
-  onChange: (next: DraftQuestion) => void
-  onRemove: () => void
-}
+  question: DraftQuestion;
+  onChange: (next: DraftQuestion) => void;
+  onRemove: () => void;
+};
 
 const QUESTION_TYPES: { value: QuestionType; label: string }[] = [
-  { value: 'TEXT', label: 'Text' },
-  { value: 'MULTIPLE_CHOICE', label: 'Multiple choice' },
-  { value: 'CHECKBOX', label: 'Checkboxes' },
-  { value: 'DATE', label: 'Date' },
-]
+  { value: "TEXT", label: "Text" },
+  { value: "MULTIPLE_CHOICE", label: "Multiple choice" },
+  { value: "CHECKBOX", label: "Checkboxes" },
+  { value: "DATE", label: "Date" },
+];
 
-export default function QuestionBuilder({ question, onChange, onRemove }: Props) {
-  const set = (patch: Partial<DraftQuestion>) => onChange({ ...question, ...patch })
+export default function QuestionBuilder({
+  question,
+  onChange,
+  onRemove,
+}: Props) {
+  const set = (patch: Partial<DraftQuestion>) =>
+    onChange({ ...question, ...patch });
 
   return (
     <div className="QuestionBuilder panel">
@@ -29,16 +34,19 @@ export default function QuestionBuilder({ question, onChange, onRemove }: Props)
             placeholder="Question title"
             onChange={(e) => set({ title: e.target.value })}
           />
-
           <select
             className="select"
             value={question.type}
             onChange={(e) => {
-              const nextType = e.target.value as QuestionType
+              const nextType = e.target.value as QuestionType;
               set({
                 type: nextType,
-                options: isChoiceType(nextType) ? question.options.length ? question.options : ['Option 1'] : [],
-              })
+                options: isChoiceType(nextType)
+                  ? question.options.length
+                    ? question.options
+                    : ["Option 1"]
+                  : [],
+              });
             }}
           >
             {QUESTION_TYPES.map((t) => (
@@ -60,20 +68,24 @@ export default function QuestionBuilder({ question, onChange, onRemove }: Props)
                     value={opt}
                     placeholder={`Option ${idx + 1}`}
                     onChange={(e) => {
-                      const next = [...question.options]
-                      next[idx] = e.target.value
-                      set({ options: next })
+                      const next = [...question.options];
+                      next[idx] = e.target.value;
+                      set({ options: next });
                     }}
                   />
                   <button
                     className="btn btnDanger"
                     type="button"
                     onClick={() => {
-                      const next = question.options.filter((_, i) => i !== idx)
-                      set({ options: next })
+                      const next = question.options.filter((_, i) => i !== idx);
+                      set({ options: next });
                     }}
                     disabled={question.options.length <= 1}
-                    title={question.options.length <= 1 ? 'Keep at least one option' : 'Remove option'}
+                    title={
+                      question.options.length <= 1
+                        ? "Keep at least one option"
+                        : "Remove option"
+                    }
                   >
                     Remove
                   </button>
@@ -83,7 +95,14 @@ export default function QuestionBuilder({ question, onChange, onRemove }: Props)
             <button
               className="btn"
               type="button"
-              onClick={() => set({ options: [...question.options, `Option ${question.options.length + 1}`] })}
+              onClick={() =>
+                set({
+                  options: [
+                    ...question.options,
+                    `Option ${question.options.length + 1}`,
+                  ],
+                })
+              }
             >
               Add option
             </button>
@@ -106,6 +125,5 @@ export default function QuestionBuilder({ question, onChange, onRemove }: Props)
         </div>
       </div>
     </div>
-  )
+  );
 }
-
