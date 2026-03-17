@@ -1,0 +1,22 @@
+.FillFormPage__h {
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.FillFormPage__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+.FillFormPage__h {
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.FillFormPage__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+

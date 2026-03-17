@@ -1,0 +1,33 @@
+.QuestionRenderer__titleRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.QuestionRenderer__title {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.QuestionRenderer__req {
+  color: #fca5a5;
+  margin-left: 6px;
+}
+
+.QuestionRenderer__choices {
+  display: grid;
+  gap: 8px;
+}
+
+.QuestionRenderer__choice {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
