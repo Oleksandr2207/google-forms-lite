@@ -10,7 +10,7 @@ export default function HomePage() {
   const forms = data ?? [];
   const { pageCount, pageIndex, setPageIndex, slice } = usePagination({
     totalItems: forms.length,
-    itemsPerPage: 3,
+    itemsPerPage: 9,
   });
   const pageForms = forms.slice(slice.start, slice.end);
 
@@ -49,7 +49,7 @@ export default function HomePage() {
             </div>
           ) : null}
 
-          {forms.length > 3 ? (
+          {forms.length > 9 ? (
             <Paginator
               pageCount={pageCount}
               pageIndex={pageIndex}
